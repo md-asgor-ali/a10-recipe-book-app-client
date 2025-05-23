@@ -11,6 +11,7 @@ import PrivateRoute from "../pages/PrivateRoute";
 import AddRecipe from './../pages/AddRecipe';
 import AllRecipes from './../pages/AllRecipes';
 import MyRecipes from "../pages/MyRecipes";
+import Loading from "../components/Loading";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
         path: "/",
         loader: () => fetch("http://localhost:5000/recipes"),
         Component: Home,
+        hydrateFallbackElement:<Loading></Loading>
       },
       {
         path: "add-recipes",
@@ -32,6 +34,7 @@ const router = createBrowserRouter([
       loader: ({ params }) =>
         fetch(`http://localhost:5000/recipes/${params.id}`),
       Component: RecipeDetails,
+      hydrateFallbackElement:<Loading></Loading>
     },
     {
       path:'my-recipes',
@@ -47,6 +50,7 @@ const router = createBrowserRouter([
         path: "/all/all-recipes",
         loader: () => fetch("http://localhost:5000/recipes"),
         Component: AllRecipes,
+        hydrateFallbackElement:<Loading></Loading>
       },
     ],
   },

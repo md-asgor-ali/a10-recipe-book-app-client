@@ -7,7 +7,7 @@ import ExtraSection2 from './ExtraSection2';
 
 const Home = () => {
     const recipes = useLoaderData();
-    console.log(recipes)
+    // console.log(recipes)
     return (
         <div>
             <Slider></Slider>
