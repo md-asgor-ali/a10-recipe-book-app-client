@@ -1,23 +1,30 @@
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
+
 
 const AddRecipe = () => {
+  const { user } = useContext(AuthContext);
+
   const handleAddRecipe = (e) => {
     e.preventDefault();
     const form = e.target;
-
     const formData = new FormData(form);
     const newRecipe = Object.fromEntries(formData.entries());
 
-    // ✅ Fix: Collect all selected categories
+    // ✅ Get all checked categories
     newRecipe.categories = formData.getAll("categories");
 
-    // ✅ Optional: Ensure numeric values are stored correctly
+    // ✅ Convert numeric fields
     newRecipe.prepTime = parseInt(newRecipe.prepTime);
-    newRecipe.likeCount = parseInt(newRecipe.likeCount);
+    newRecipe.likeCount = parseInt(newRecipe.likeCount) || 0;
+
+    // ✅ Add createdBy from Firebase Auth user
+    newRecipe.createdBy = user?.email || "anonymous";
 
     console.log("Submitting recipe:", newRecipe);
 
-    // ✅ POST to backend
+    // ✅ Send to backend
     fetch("http://localhost:5000/recipes", {
       method: "POST",
       headers: {
@@ -25,7 +32,14 @@ const AddRecipe = () => {
       },
       body: JSON.stringify(newRecipe),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then((err) => {
+            throw new Error(err.message || "Failed to add recipe");
+          });
+        }
+        return res.json();
+      })
       .then((data) => {
         if (data.insertedId || data.acknowledged) {
           Swal.fire({
@@ -34,6 +48,14 @@ const AddRecipe = () => {
           });
           form.reset();
         }
+      })
+      .catch((err) => {
+        console.error("Error adding recipe:", err.message);
+        Swal.fire({
+          icon: "error",
+          title: "Oops!",
+          text: err.message,
+        });
       });
   };
 
@@ -139,7 +161,7 @@ const AddRecipe = () => {
           </div>
         </div>
 
-        {/* Like Count (read-only) */}
+        {/* Like Count */}
         <div>
           <label className="block text-gray-700 font-medium mb-1">Like Count</label>
           <input
@@ -151,7 +173,7 @@ const AddRecipe = () => {
           />
         </div>
 
-        {/* Submit Button */}
+        {/* Submit */}
         <div className="text-center">
           <button
             type="submit"

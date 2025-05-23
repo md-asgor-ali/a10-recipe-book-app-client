@@ -22,7 +22,7 @@ const Login = () => {
           title: "Login Successful",
           text: `Welcome back, ${result.user.displayName || "User"}!`,
         });
-        navigate(from, { replace: true });
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         Swal.fire({
