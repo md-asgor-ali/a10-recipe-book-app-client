@@ -98,23 +98,23 @@ const MyRecipes = () => {
               alt={recipe.title}
               className="w-full h-40 object-cover rounded mb-3"
             />
-            <h3 className="text-xl font-semibold">{recipe.title}</h3>
-            <p>
+            <h3 className="text-xl text-green-600 font-semibold">{recipe.title}</h3>
+            <p className="text-green-600">
               <strong>Ingredients:</strong> {recipe.ingredients}
             </p>
-            <p>
+            <p className="text-green-600">
               <strong>Instructions:</strong> {recipe.instructions}
             </p>
-            <p>
+            <p className="text-green-600">
               <strong>Cuisine:</strong> {recipe.cuisine}
             </p>
-            <p>
+            <p className="text-green-600">
               <strong>Preparation Time:</strong> {recipe.prepTime} mins
             </p>
-            <p>
+            <p className="text-green-600">
               <strong>Categories:</strong> {recipe.categories?.join(", ")}
             </p>
-            <p>
+            <p className="text-green-600">
               <strong>Likes:</strong> {recipe.likeCount}
             </p>
             <div className="flex justify-between mt-4">

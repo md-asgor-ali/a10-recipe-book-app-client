@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
-import { Link } from "react-router"; 
-import { FaBars } from "react-icons/fa";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router"; // Fixed typo from "react-router"
+import { FaBars, FaSun, FaMoon } from "react-icons/fa";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   const handleLogOut = () => {
     logOut()
@@ -16,14 +17,25 @@ const Navbar = () => {
       });
   };
 
+  const handleThemeToggle = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
   const navItems = (
     <>
-      <li><Link to="/">Home</Link></li>
-      <li><Link to="/all/all-recipes">All Recipes</Link></li>
+      <li className="text-lime-600"><Link to="/">Home</Link></li>
+      <li  className="text-lime-600"><Link to="/all/all-recipes">All Recipes</Link></li>
       {user && (
         <>
-          <li><Link to="/add-recipes">Add Recipe</Link></li>
-          <li><Link to="/my-recipes">My Recipes</Link></li>
+          <li  className="text-lime-600"><Link to="/add-recipes">Add Recipe</Link></li>
+          <li  className="text-lime-600"><Link to="/my-recipes">My Recipes</Link></li>
         </>
       )}
     </>
@@ -32,7 +44,6 @@ const Navbar = () => {
   return (
     <div className="bg-gradient-to-r from-orange-100 via-pink-100 to-lime-100 shadow-md sticky top-0 z-50">
       <div className="navbar max-w-7xl mx-auto px-4 py-3">
-        {/* Left: Logo and Mobile Dropdown */}
         <div className="navbar-start">
           <div className="dropdown lg:hidden">
             <label tabIndex={0} className="btn btn-ghost text-xl text-orange-500">
@@ -52,18 +63,24 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Center: Desktop Menu */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 space-x-2 font-semibold">
             {navItems}
           </ul>
         </div>
 
-        {/* Right: Auth Buttons or Avatar */}
         <div className="navbar-end flex items-center gap-2">
+          {/* Theme Toggle */}
+          <button
+            className="btn btn-sm btn-circle bg-gray-200 dark:bg-gray-800 text-black dark:text-white"
+            onClick={handleThemeToggle}
+            aria-label="Toggle Theme"
+          >
+            {theme === "light" ? <FaMoon /> : <FaSun />}
+          </button>
+
           {user ? (
             <>
-              {/* Avatar with Display Name on Hover */}
               <div className="relative group">
                 <img
                   src={user.photoURL}
@@ -74,7 +91,6 @@ const Navbar = () => {
                   {user.displayName}
                 </div>
               </div>
-              {/* Logout Button */}
               <button
                 onClick={handleLogOut}
                 className="btn btn-sm bg-lime-600 text-white hover:bg-lime-500"
