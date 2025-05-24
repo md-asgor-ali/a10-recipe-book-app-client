@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router"; // use react-router-dom, not react-router
+import { NavLink } from "react-router"; 
 import { FaBars, FaSun, FaMoon } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
-
 import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
@@ -31,18 +30,46 @@ const Navbar = () => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
+  // ✅ Custom link class with animated underline and active styles
+  const navLinkClass = ({ isActive }) =>
+    `relative px-3 py-1 text-lime-600 font-medium transition-all duration-300 ease-in-out
+     hover:text-lime-700 
+     before:absolute before:bottom-0 before:left-1/2 before:-translate-x-1/2
+     before:w-0 before:h-[2px] before:bg-lime-600 before:transition-all before:duration-300
+     hover:before:w-full
+     ${isActive ? "text-lime-800 before:w-full" : ""}`;
+
   const navItems = (
     <>
-      <li className="text-lime-600"><Link to="/">Home</Link></li>
-      <li className="text-lime-600"><Link to="/all/all-recipes">All Recipes</Link></li>
+      <li>
+        <NavLink to="/" className={navLinkClass}>
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/all/all-recipes" className={navLinkClass}>
+          All Recipes
+        </NavLink>
+      </li>
       {user && (
         <>
-          <li className="text-lime-600"><Link to="/add-recipes">Add Recipe</Link></li>
-          <li className="text-lime-600"><Link to="/my-recipes">My Recipes</Link></li>
+          <li>
+            <NavLink to="/add-recipes" className={navLinkClass}>
+              Add Recipe
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/my-recipes" className={navLinkClass}>
+              My Recipes
+            </NavLink>
+          </li>
         </>
-        
       )}
-      <li className="text-lime-600"><Link to="/blogs">Blogs</Link></li>
+      <li>
+        <NavLink to="/blogs" className={navLinkClass}>
+          Blogs
+        </NavLink>
+      </li>
     </>
   );
 
@@ -63,10 +90,10 @@ const Navbar = () => {
             </ul>
           </div>
 
-          <Link to="/" className="text-3xl font-extrabold text-orange-500">
+          <NavLink to="/" className="text-3xl font-extrabold text-orange-500">
             🍽️ <span className="text-rose-500">Recipe</span>
             <span className="text-lime-600">Book</span>
-          </Link>
+          </NavLink>
         </div>
 
         {/* Center: Desktop Menu */}
@@ -108,18 +135,18 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <Link
+              <NavLink
                 to="/auth/login"
                 className="btn btn-sm rounded-full bg-lime-600 text-white hover:bg-gray-800"
               >
                 Login
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 to="/auth/register"
                 className="btn btn-sm bg-lime-600 text-white hover:bg-lime-500 rounded-full px-4"
               >
                 Register
-              </Link>
+              </NavLink>
             </>
           )}
         </div>
