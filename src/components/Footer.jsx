@@ -16,7 +16,7 @@ const Footer = () => {
         {/* Logo & Description */}
         <div>
           <h2 className="text-3xl font-bold text-orange-500">
-            🍽️ Recipe<span className="text-rose-500">Book</span>
+            🍽️ Recipe<span className="text-lime-600">Book</span>
           </h2>
           <p className="mt-3 text-sm text-gray-700 leading-relaxed">
             Discover and share your favorite recipes from around the world.
