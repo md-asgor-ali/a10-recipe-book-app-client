@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { signIn, googleLogin } = useContext(AuthContext);
@@ -54,6 +55,9 @@ const Login = () => {
 
   return (
     <div className="card bg-base-100 mx-auto mt-16 w-full max-w-sm shadow-xl border border-gray-200">
+       <Helmet>
+        <title>Login || Recipe Book</title>
+      </Helmet>
       <h1 className="text-4xl text-center font-bold pt-8 pb-2 text-gray-700">
         Login
       </h1>

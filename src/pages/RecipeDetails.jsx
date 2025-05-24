@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const RecipeDetails = () => {
   const { id } = useParams();
@@ -48,6 +49,9 @@ const RecipeDetails = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
+      <Helmet>
+        <title>Recipe Details || Recipe Book</title>
+      </Helmet>
       <img
         src={recipe.image}
         alt={recipe.title}

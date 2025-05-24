@@ -5,12 +5,18 @@ import TopRecipes from './TopRecipes';
 import ExtraSection1 from './ExtraSection1';
 import ExtraSection2 from './ExtraSection2';
 import Showcase from './Showcase';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
     const recipes = useLoaderData();
     // console.log(recipes)
     return (
         <div>
+            <Helmet>
+                <title>
+                    Recipe Book || Home
+                </title>
+            </Helmet>
             <Slider></Slider>
             <Showcase></Showcase>
             <TopRecipes recipes={recipes}></TopRecipes>

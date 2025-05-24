@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const { createUser, setUser, googleLogin } = useContext(AuthContext);
@@ -17,7 +18,7 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    console.log({name, photo, email, password})
+    console.log({ name, photo, email, password });
 
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
     if (!passwordPattern.test(password)) {
@@ -70,6 +71,9 @@ const Register = () => {
 
   return (
     <div className="card bg-base-100 mx-auto mt-16 w-full max-w-sm shadow-xl border border-gray-200">
+      <Helmet>
+        <title>Register || Recipe Book</title>
+      </Helmet>
       <h1 className="text-4xl text-center font-bold pt-8 pb-2 text-gray-700">
         Register
       </h1>
@@ -77,7 +81,9 @@ const Register = () => {
         <form onSubmit={handleRegister} className="space-y-4">
           {/* Name */}
           <div>
-            <label className="label font-medium text-sm text-gray-700">Name</label>
+            <label className="label font-medium text-sm text-gray-700">
+              Name
+            </label>
             <input
               type="text"
               name="name"
@@ -89,7 +95,9 @@ const Register = () => {
 
           {/* Email */}
           <div>
-            <label className="label font-medium text-sm text-gray-700">Email</label>
+            <label className="label font-medium text-sm text-gray-700">
+              Email
+            </label>
             <input
               type="email"
               name="email"
@@ -101,7 +109,9 @@ const Register = () => {
 
           {/* Photo URL */}
           <div>
-            <label className="label font-medium text-sm text-gray-700">Photo URL</label>
+            <label className="label font-medium text-sm text-gray-700">
+              Photo URL
+            </label>
             <input
               type="text"
               name="photo"
@@ -113,7 +123,9 @@ const Register = () => {
 
           {/* Password */}
           <div>
-            <label className="label font-medium text-sm text-gray-700">Password</label>
+            <label className="label font-medium text-sm text-gray-700">
+              Password
+            </label>
             <input
               type="password"
               name="password"
@@ -144,10 +156,22 @@ const Register = () => {
             viewBox="0 0 512 512"
             className="mr-2"
           >
-            <path fill="#EA4335" d="M113 309l-15 58-57 1c-22-40-35-86-35-135s13-95 35-135l51 1 22 51c-9 26-13 54-13 83 0 29 4 57 12 83z"/>
-            <path fill="#34A853" d="M256 112c35 0 66 12 91 32l68-67C372 33 318 8 256 8c-94 0-174 54-214 133l61 48c26-74 97-127 179-127z"/>
-            <path fill="#4A90E2" d="M256 504c62 0 117-24 157-64l-67-54c-25 19-56 30-90 30-82 0-153-53-179-126l-61 48c39 79 120 133 214 133z"/>
-            <path fill="#FBBC05" d="M413 219H256v81h89c-12 33-37 58-89 58-53 0-98-36-114-85l-61 48c28 57 88 97 160 97 93 0 168-75 168-168 0-11-1-22-3-32z"/>
+            <path
+              fill="#EA4335"
+              d="M113 309l-15 58-57 1c-22-40-35-86-35-135s13-95 35-135l51 1 22 51c-9 26-13 54-13 83 0 29 4 57 12 83z"
+            />
+            <path
+              fill="#34A853"
+              d="M256 112c35 0 66 12 91 32l68-67C372 33 318 8 256 8c-94 0-174 54-214 133l61 48c26-74 97-127 179-127z"
+            />
+            <path
+              fill="#4A90E2"
+              d="M256 504c62 0 117-24 157-64l-67-54c-25 19-56 30-90 30-82 0-153-53-179-126l-61 48c39 79 120 133 214 133z"
+            />
+            <path
+              fill="#FBBC05"
+              d="M413 219H256v81h89c-12 33-37 58-89 58-53 0-98-36-114-85l-61 48c28 57 88 97 160 97 93 0 168-75 168-168 0-11-1-22-3-32z"
+            />
           </svg>
           Continue with Google
         </button>

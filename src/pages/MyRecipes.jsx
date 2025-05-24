@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const MyRecipes = () => {
   const { user } = useContext(AuthContext);
@@ -95,6 +96,9 @@ const MyRecipes = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
+      <Helmet>
+        <title>My Recipe || Recipe Book</title>
+      </Helmet>
       <h2 className="text-3xl font-bold text-center mb-6">My Recipes</h2>
 
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">

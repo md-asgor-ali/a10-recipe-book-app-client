@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const AddRecipe = () => {
   const { user } = useContext(AuthContext);
@@ -60,6 +61,9 @@ const AddRecipe = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-xl rounded-xl mt-10">
+          <Helmet>
+              <title>Add Recipe || Recipe Book</title>
+            </Helmet>
       <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
         Add a New Recipe
       </h2>
