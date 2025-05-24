@@ -37,7 +37,11 @@ const router = createBrowserRouter([
           fetch(
             `https://a10-recipe-book-app-server.vercel.app/recipes/${params.id}`
           ),
-        Component: RecipeDetails,
+        element: (
+          <PrivateRoute>
+            <RecipeDetails></RecipeDetails>
+          </PrivateRoute>
+        ),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
@@ -45,9 +49,9 @@ const router = createBrowserRouter([
         Component: MyRecipes,
       },
       {
-        path:'blogs',
-        element: <Blogs></Blogs>
-      }
+        path: "blogs",
+        element: <Blogs></Blogs>,
+      },
     ],
   },
   {

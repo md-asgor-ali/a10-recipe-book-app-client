@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { NavLink } from "react-router"; 
+import { NavLink } from "react-router";
 import { FaBars, FaSun, FaMoon } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
@@ -12,23 +12,23 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     logOut()
-    .then(() => {
-      Swal.fire({
-        icon: "success",
-        title: "Logged Out!",
-        text: "You have successfully logged out.",
-        timer: 2000,
-        showConfirmButton: false,
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Logged Out!",
+          text: "You have successfully logged out.",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+      })
+      .catch((error) => {
+        console.error("Logout error:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops!",
+          text: "Logout failed. Please try again.",
+        });
       });
-    })
-    .catch((error) => {
-      console.error("Logout error:", error);
-      Swal.fire({
-        icon: "error",
-        title: "Oops!",
-        text: "Logout failed. Please try again.",
-      });
-    });
   };
 
   const handleThemeToggle = () => {
@@ -91,7 +91,10 @@ const Navbar = () => {
         {/* Left: Logo and Mobile Dropdown */}
         <div className="navbar-start">
           <div className="dropdown lg:hidden">
-            <label tabIndex={0} className="btn btn-ghost text-xl text-orange-500">
+            <label
+              tabIndex={0}
+              className="btn btn-ghost text-xl text-orange-500"
+            >
               <FaBars />
             </label>
             <ul
@@ -133,7 +136,9 @@ const Navbar = () => {
                   alt={user.displayName || "User"}
                   className="w-10 h-10 rounded-full border-2 border-green-600 cursor-pointer"
                   data-tooltip-id="user-tooltip"
-                  data-tooltip-content={`${user.displayName || "User"}\n${user.email}`}
+                  data-tooltip-content={`${user.displayName || "User"}\n${
+                    user.email
+                  }`}
                 />
                 <Tooltip id="user-tooltip" place="bottom" multiline />
               </div>
