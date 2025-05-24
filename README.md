@@ -3,7 +3,7 @@ Website Name:  Recipe Book App  </br>
 
 Live Site URL: </br>
 * Firebase Live Link: https://recipe-book-app-1a246.web.app </br>
-* Netlify Live Link: </br>
+* Netlify Live Link: dapper-heliotrope-e5db17.netlify.app</br>
 
 Website Feature: </br>
 * User-friendly Recipe Book App where users can manage their recipes</br>
