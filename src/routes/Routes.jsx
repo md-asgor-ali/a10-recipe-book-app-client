@@ -12,6 +12,7 @@ import AddRecipe from "./../pages/AddRecipe";
 import AllRecipes from "./../pages/AllRecipes";
 import MyRecipes from "../pages/MyRecipes";
 import Loading from "../components/Loading";
+import Blogs from "../pages/Blogs";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
         path: "my-recipes",
         Component: MyRecipes,
       },
+      {
+        path:'blogs',
+        element: <Blogs></Blogs>
+      }
     ],
   },
   {

@@ -40,7 +40,9 @@ const Navbar = () => {
           <li className="text-lime-600"><Link to="/add-recipes">Add Recipe</Link></li>
           <li className="text-lime-600"><Link to="/my-recipes">My Recipes</Link></li>
         </>
+        
       )}
+      <li className="text-lime-600"><Link to="/blogs">Blogs</Link></li>
     </>
   );
 
