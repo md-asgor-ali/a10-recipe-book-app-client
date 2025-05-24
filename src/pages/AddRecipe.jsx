@@ -24,7 +24,7 @@ const AddRecipe = () => {
     console.log("Submitting recipe:", newRecipe);
 
     // ✅ Send to backend
-    fetch("a10-recipe-book-app-server.vercel.app/:5000/recipes", {
+    fetch("https://a10-recipe-book-app-server.vercel.app/recipes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

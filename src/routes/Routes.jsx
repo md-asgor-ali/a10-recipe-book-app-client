@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         index: true,
         path: "/",
         loader: () =>
-          fetch("a10-recipe-book-app-server.vercel.app/:5000/recipes"),
+          fetch("https://a10-recipe-book-app-server.vercel.app/recipes"),
         Component: Home,
         hydrateFallbackElement: <Loading></Loading>,
       },
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         path: "recipe/:id",
         loader: ({ params }) =>
           fetch(
-            `a10-recipe-book-app-server.vercel.app/:5000/recipes/${params.id}`
+            `https://a10-recipe-book-app-server.vercel.app/recipes/${params.id}`
           ),
         Component: RecipeDetails,
         hydrateFallbackElement: <Loading></Loading>,
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
       {
         path: "/all/all-recipes",
         loader: () =>
-          fetch("a10-recipe-book-app-server.vercel.app/:5000/recipes"),
+          fetch("https://a10-recipe-book-app-server.vercel.app/recipes"),
         Component: AllRecipes,
         hydrateFallbackElement: <Loading></Loading>,
       },

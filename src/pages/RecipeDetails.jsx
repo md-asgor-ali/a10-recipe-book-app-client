@@ -10,7 +10,7 @@ const RecipeDetails = () => {
   const [isLiking, setIsLiking] = useState(false);
 
   useEffect(() => {
-    fetch(`a10-recipe-book-app-server.vercel.app/:5000/recipes/${id}`)
+    fetch(`https://a10-recipe-book-app-server.vercel.app/recipes/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setRecipe(data);
@@ -26,7 +26,7 @@ const RecipeDetails = () => {
 
     setIsLiking(true);
 
-    fetch(`a10-recipe-book-app-server.vercel.app/:5000/recipes/${id}/like`, {
+    fetch(`https://a10-recipe-book-app-server.vercel.app/recipes/${id}/like`, {
       method: "PUT",
     })
       .then((res) => res.json())

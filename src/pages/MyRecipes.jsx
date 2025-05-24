@@ -12,7 +12,7 @@ const MyRecipes = () => {
     if (!user?.email) return; // Guard clause to avoid error
 
     fetch(
-      `a10-recipe-book-app-server.vercel.app/:5000/recipes?email=${user.email}`
+      `https://a10-recipe-book-app-server.vercel.app/recipes?email=${user.email}`
     )
       .then((res) => res.json())
       .then((data) => setRecipes(data));
@@ -29,7 +29,7 @@ const MyRecipes = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`a10-recipe-book-app-server.vercel.app/:5000/recipes/${id}`, {
+        fetch(`https://a10-recipe-book-app-server.vercel.app/recipes/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -62,7 +62,7 @@ const MyRecipes = () => {
     };
 
     fetch(
-      `a10-recipe-book-app-server.vercel.app/:5000/recipes/${selectedRecipe._id}`,
+      `https://a10-recipe-book-app-server.vercel.app/recipes/${selectedRecipe._id}`,
       {
         method: "PUT",
         headers: {
@@ -78,7 +78,7 @@ const MyRecipes = () => {
         setSelectedRecipe(null);
         // Refresh UI
         fetch(
-          `a10-recipe-book-app-server.vercel.app/:5000/recipes?email=${user.email}`
+          `https://a10-recipe-book-app-server.vercel.app/recipes?email=${user.email}`
         )
           .then((res) => res.json())
           .then((data) => setRecipes(data));
