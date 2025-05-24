@@ -11,7 +11,9 @@ const MyRecipes = () => {
   useEffect(() => {
     if (!user?.email) return; // Guard clause to avoid error
 
-    fetch(`http://localhost:5000/recipes?email=${user.email}`)
+    fetch(
+      `a10-recipe-book-app-server.vercel.app/:5000/recipes?email=${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => setRecipes(data));
   }, [user]);
@@ -27,7 +29,7 @@ const MyRecipes = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/recipes/${id}`, {
+        fetch(`a10-recipe-book-app-server.vercel.app/:5000/recipes/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -59,20 +61,25 @@ const MyRecipes = () => {
         .map((input) => input.value),
     };
 
-    fetch(`http://localhost:5000/recipes/${selectedRecipe._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedRecipe),
-    })
+    fetch(
+      `a10-recipe-book-app-server.vercel.app/:5000/recipes/${selectedRecipe._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedRecipe),
+      }
+    )
       .then((res) => res.json())
       .then(() => {
         Swal.fire("Updated!", "Your recipe has been updated.", "success");
         setIsModalOpen(false);
         setSelectedRecipe(null);
         // Refresh UI
-        fetch(`http://localhost:5000/recipes?email=${user.email}`)
+        fetch(
+          `a10-recipe-book-app-server.vercel.app/:5000/recipes?email=${user.email}`
+        )
           .then((res) => res.json())
           .then((data) => setRecipes(data));
       });
@@ -98,7 +105,9 @@ const MyRecipes = () => {
               alt={recipe.title}
               className="w-full h-40 object-cover rounded mb-3"
             />
-            <h3 className="text-xl text-green-600 font-semibold">{recipe.title}</h3>
+            <h3 className="text-xl text-green-600 font-semibold">
+              {recipe.title}
+            </h3>
             <p className="text-green-600">
               <strong>Ingredients:</strong> {recipe.ingredients}
             </p>

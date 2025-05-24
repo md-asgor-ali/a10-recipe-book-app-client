@@ -8,8 +8,8 @@ import AllRecipeLayout from "../layouts/AllRecipeLayout";
 import RecipeDetails from "../pages/RecipeDetails";
 import Home from "../components/Home";
 import PrivateRoute from "../pages/PrivateRoute";
-import AddRecipe from './../pages/AddRecipe';
-import AllRecipes from './../pages/AllRecipes';
+import AddRecipe from "./../pages/AddRecipe";
+import AllRecipes from "./../pages/AllRecipes";
 import MyRecipes from "../pages/MyRecipes";
 import Loading from "../components/Loading";
 
@@ -21,25 +21,32 @@ const router = createBrowserRouter([
       {
         index: true,
         path: "/",
-        loader: () => fetch("http://localhost:5000/recipes"),
+        loader: () =>
+          fetch("a10-recipe-book-app-server.vercel.app/:5000/recipes"),
         Component: Home,
-        hydrateFallbackElement:<Loading></Loading>
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "add-recipes",
-        element:<PrivateRoute><AddRecipe></AddRecipe></PrivateRoute>
+        element: (
+          <PrivateRoute>
+            <AddRecipe></AddRecipe>
+          </PrivateRoute>
+        ),
       },
-        {
-      path: "recipe/:id",
-      loader: ({ params }) =>
-        fetch(`http://localhost:5000/recipes/${params.id}`),
-      Component: RecipeDetails,
-      hydrateFallbackElement:<Loading></Loading>
-    },
-    {
-      path:'my-recipes',
-      Component:MyRecipes,
-    }
+      {
+        path: "recipe/:id",
+        loader: ({ params }) =>
+          fetch(
+            `a10-recipe-book-app-server.vercel.app/:5000/recipes/${params.id}`
+          ),
+        Component: RecipeDetails,
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
+        path: "my-recipes",
+        Component: MyRecipes,
+      },
     ],
   },
   {
@@ -48,9 +55,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/all/all-recipes",
-        loader: () => fetch("http://localhost:5000/recipes"),
+        loader: () =>
+          fetch("a10-recipe-book-app-server.vercel.app/:5000/recipes"),
         Component: AllRecipes,
-        hydrateFallbackElement:<Loading></Loading>
+        hydrateFallbackElement: <Loading></Loading>,
       },
     ],
   },

@@ -2,7 +2,6 @@ import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
-
 const AddRecipe = () => {
   const { user } = useContext(AuthContext);
 
@@ -25,7 +24,7 @@ const AddRecipe = () => {
     console.log("Submitting recipe:", newRecipe);
 
     // ✅ Send to backend
-    fetch("http://localhost:5000/recipes", {
+    fetch("a10-recipe-book-app-server.vercel.app/:5000/recipes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -67,7 +66,9 @@ const AddRecipe = () => {
       <form onSubmit={handleAddRecipe} className="space-y-5">
         {/* Image URL */}
         <div>
-          <label className="block text-gray-700 font-medium mb-1">Image URL</label>
+          <label className="block text-gray-700 font-medium mb-1">
+            Image URL
+          </label>
           <input
             type="url"
             name="image"
@@ -90,7 +91,9 @@ const AddRecipe = () => {
 
         {/* Ingredients */}
         <div>
-          <label className="block text-gray-700 font-medium mb-1">Ingredients</label>
+          <label className="block text-gray-700 font-medium mb-1">
+            Ingredients
+          </label>
           <textarea
             name="ingredients"
             rows="3"
@@ -102,7 +105,9 @@ const AddRecipe = () => {
 
         {/* Instructions */}
         <div>
-          <label className="block text-gray-700 font-medium mb-1">Instructions</label>
+          <label className="block text-gray-700 font-medium mb-1">
+            Instructions
+          </label>
           <textarea
             name="instructions"
             rows="4"
@@ -114,7 +119,9 @@ const AddRecipe = () => {
 
         {/* Cuisine Type */}
         <div>
-          <label className="block text-gray-700 font-medium mb-1">Cuisine Type</label>
+          <label className="block text-gray-700 font-medium mb-1">
+            Cuisine Type
+          </label>
           <select
             name="cuisine"
             required
@@ -145,25 +152,34 @@ const AddRecipe = () => {
 
         {/* Categories */}
         <div>
-          <label className="block text-gray-700 font-medium mb-1">Categories</label>
+          <label className="block text-gray-700 font-medium mb-1">
+            Categories
+          </label>
           <div className="flex flex-wrap gap-4 mt-2">
-            {["Breakfast", "Lunch", "Dinner", "Dessert", "Vegan"].map((category) => (
-              <label key={category} className="flex items-center gap-2 text-gray-700">
-                <input
-                  type="checkbox"
-                  name="categories"
-                  value={category}
-                  className="accent-blue-500"
-                />
-                {category}
-              </label>
-            ))}
+            {["Breakfast", "Lunch", "Dinner", "Dessert", "Vegan"].map(
+              (category) => (
+                <label
+                  key={category}
+                  className="flex items-center gap-2 text-gray-700"
+                >
+                  <input
+                    type="checkbox"
+                    name="categories"
+                    value={category}
+                    className="accent-blue-500"
+                  />
+                  {category}
+                </label>
+              )
+            )}
           </div>
         </div>
 
         {/* Like Count */}
         <div>
-          <label className="block text-gray-700 font-medium mb-1">Like Count</label>
+          <label className="block text-gray-700 font-medium mb-1">
+            Like Count
+          </label>
           <input
             type="number"
             name="likeCount"
