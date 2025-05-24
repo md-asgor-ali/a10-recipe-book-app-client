@@ -4,6 +4,7 @@ import { FaBars, FaSun, FaMoon } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -11,12 +12,23 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     logOut()
-      .then(() => {
-        alert("You logged out successfully");
-      })
-      .catch((error) => {
-        console.error("Logout error:", error);
+    .then(() => {
+      Swal.fire({
+        icon: "success",
+        title: "Logged Out!",
+        text: "You have successfully logged out.",
+        timer: 2000,
+        showConfirmButton: false,
       });
+    })
+    .catch((error) => {
+      console.error("Logout error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops!",
+        text: "Logout failed. Please try again.",
+      });
+    });
   };
 
   const handleThemeToggle = () => {
