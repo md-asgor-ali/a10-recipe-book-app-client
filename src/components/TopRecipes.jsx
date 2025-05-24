@@ -26,7 +26,7 @@ const TopRecipes = () => {
 
   return (
     <section className="py-8 px-4 max-w-7xl mx-auto">
-      <h2 className="text-3xl font-bold text-center mb-8 text-green-600">
+      <h2 className="text-3xl font-bold text-center mb-8 text-lime-600">
         Top Recipes
       </h2>
 
@@ -52,7 +52,7 @@ const TopRecipes = () => {
                 Likes: <span className="font-medium">{recipe.likeCount}</span>
               </p>
               <Link to={`/recipe/${recipe._id}`}>
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md w-full">
+                <button className="bg-lime-600 hover:bg-lime-700 text-white px-4 py-2 rounded-md w-full">
                   View Details
                 </button>
               </Link>
@@ -63,7 +63,7 @@ const TopRecipes = () => {
 
       <div className="text-center mt-10">
         <Link to="/all/all-recipes">
-          <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-md text-lg">
+          <button className="bg-lime-600 hover:bg-lime-700 text-white px-6 py-3 rounded-md text-lg">
             See All Recipes
           </button>
         </Link>
