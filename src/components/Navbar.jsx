@@ -86,7 +86,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-gradient-to-r from-orange-100 via-pink-100 to-lime-100 shadow-md sticky top-0 z-50">
+    <div className="fixed top-0 left-0 w-full z-999 bg-gradient-to-r from-orange-100 via-pink-100 to-lime-100 shadow-md">
       <div className="navbar max-w-7xl mx-auto px-4 py-3">
         {/* Left: Logo and Mobile Dropdown */}
         <div className="navbar-start">
@@ -106,8 +106,7 @@ const Navbar = () => {
           </div>
 
           <NavLink to="/" className="text-3xl font-extrabold text-orange-500">
-            🍽️ <span className="text-rose-500">Recipe</span>
-            <span className="text-lime-600">Book</span>
+            🍽️  <span className="hidden sm:inline">FoodZone</span>
           </NavLink>
         </div>
 
