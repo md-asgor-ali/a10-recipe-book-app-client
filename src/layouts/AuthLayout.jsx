@@ -13,7 +13,7 @@ const AuthLayout = () => {
             <header>
                 <Navbar></Navbar>
             </header>
-            <main className="min-h-[calc(100vh-280px)]">
+            <main className="min-h-[calc(100vh-280px)] pt-20">
                 <Outlet></Outlet>
             </main>
             <footer>

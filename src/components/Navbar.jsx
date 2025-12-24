@@ -106,7 +106,10 @@ const Navbar = () => {
           </div>
 
           <NavLink to="/" className="text-3xl font-extrabold text-orange-500">
-            🍽️  <span className="hidden sm:inline">FoodZone</span>
+            🍽️
+            <span className="hidden sm:inline">
+              Recipe<span className="text-lime-600">Book</span>
+            </span>
           </NavLink>
         </div>
 
