@@ -8,6 +8,7 @@ const TopRecipes = () => {
     fetch("https://a10-recipe-book-app-server.vercel.app/top-recipes")
       .then((res) => res.json())
       .then((data) => setRecipes(data))
+      
       .catch((error) => console.error("Error fetching recipes:", error));
   };
 

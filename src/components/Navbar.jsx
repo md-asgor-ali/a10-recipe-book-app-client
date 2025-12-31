@@ -5,6 +5,8 @@ import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import logo2 from "../assets/logo2.png"
+
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -105,9 +107,9 @@ const Navbar = () => {
             </ul>
           </div>
 
-          <NavLink to="/" className="text-3xl font-extrabold text-orange-500">
-            🍽️
-            <span className="hidden sm:inline">
+          <NavLink to="/" className="flex items-center gap-1">
+            <img src={logo2} alt="Recipe book logo" className="w-10 h-10 object-contain" />
+            <span className="hidden sm:inline text-3xl font-extrabold text-orange-500">
               Recipe<span className="text-lime-600">Book</span>
             </span>
           </NavLink>
