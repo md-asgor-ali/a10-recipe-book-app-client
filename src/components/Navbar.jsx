@@ -5,12 +5,16 @@ import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
-import logo2 from "../assets/logo2.png"
-
+import logo2 from "../assets/logo2.png";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const handleLogOut = () => {
     logOut()
@@ -32,17 +36,6 @@ const Navbar = () => {
         });
       });
   };
-
-  const handleThemeToggle = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-  };
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
 
   // ✅ Custom link class with animated underline and active styles
   const navLinkClass = ({ isActive }) =>
@@ -108,7 +101,11 @@ const Navbar = () => {
           </div>
 
           <NavLink to="/" className="flex items-center gap-1">
-            <img src={logo2} alt="Recipe book logo" className="w-10 h-10 object-contain" />
+            <img
+              src={logo2}
+              alt="Recipe book logo"
+              className="w-10 h-10 object-contain"
+            />
             <span className="hidden sm:inline text-3xl font-extrabold text-orange-500">
               Recipe<span className="text-lime-600">Book</span>
             </span>
@@ -124,13 +121,53 @@ const Navbar = () => {
 
         {/* Right: Auth Buttons and Theme Toggle */}
         <div className="navbar-end flex items-center gap-2">
-          <button
-            className="btn btn-sm btn-circle bg-gray-200 dark:bg-gray-800 text-black dark:text-white"
-            onClick={handleThemeToggle}
-            aria-label="Toggle Theme"
-          >
-            {theme === "light" ? <FaMoon /> : <FaSun />}
-          </button>
+          <label className="toggle text-base-content cursor-pointer">
+            <input
+              type="checkbox"
+              checked={theme === "dark"}
+              onChange={() => setTheme(theme === "light" ? "dark" : "light")}
+            />
+
+            <svg
+              aria-label="sun"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <g
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                strokeWidth="2"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </g>
+            </svg>
+
+            <svg
+              aria-label="moon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <g
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                strokeWidth="2"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+              </g>
+            </svg>
+          </label>
 
           {user ? (
             <>
